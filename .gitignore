@@ -13,4 +13,5 @@ out/
 .classpath
 .factorypath
 
-**/*.development.*
+**/*-development.*
+**/*-test.*
