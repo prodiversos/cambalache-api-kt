@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.cambalache.api
+testFramework: spock
+sourceLanguage: kotlin
+buildTool: gradle
+features: [ annotation-api, app-name, data, data-jpa, flyway, graalvm, gradle, h2, http-client, jdbc-hikari, kotlin, kotlin-application, netty-server, readme, shade, slf4j-simple, spock, yaml ]
