@@ -9,11 +9,13 @@ import io.micronaut.runtime.server.EmbeddedServer
 import io.micronaut.test.extensions.spock.annotation.MicronautTest
 import spock.lang.AutoCleanup
 import spock.lang.Specification
+import spock.lang.Unroll
 
 @MicronautTest
 class EnviarComentarioContactoSpec extends Specification {
     @AutoCleanup EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer)
 
+    @Unroll
     void "crea mensaje contacto"() {
         given: 'Se desea contactar con los administradores de Recursos Humanos'
         def command = new CrearMensajeContactoCommand(
@@ -27,9 +29,11 @@ class EnviarComentarioContactoSpec extends Specification {
 
         when: 'Se intenta registrar un nuevo mensaje'
         def commandHandler = new CrearMensajeContactoCommandHandler(repository)
-        commandHandler.handle(command)
+        def commandResult = commandHandler.handle(command)
 
-        then: 'El mensaje de contacto se registra con éxito'
+        then: 'El mensaje de contacto se registra con éxito y se obtiene su identificador'
         notThrown(MensajeContactoInvalidoException)
+        commandResult.idMensajeContacto > 0
     }
 }
+
