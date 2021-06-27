@@ -17,11 +17,9 @@ class BuscarAnuncioSpec extends Specification {
     @AutoCleanup EmbeddedServer embeddedServer = ApplicationContext.run(EmbeddedServer)
 
     void "obtiene anuncios paginados"() {
-        given: 'Consulta filtrada por título, tipo de artículo y rango de precios'
+        given: 'Consulta filtrada por título, tipo de artículo y rango de precios, limitada a la página 1 con 10 resultados'
         def pageOffset = 0
         def pageSize = 10
-
-        and: 'Limitada a la página 1 con 10 resultados'
         def query = new BuscarAnuncioQuery(
                 "%automático%",
                 "CARRO",
