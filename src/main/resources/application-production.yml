@@ -1,0 +1,17 @@
+datasources:
+  default:
+    url: "jdbc:postgresql://saea98.com:5433/ca_17"
+    username: ca_17
+    password: 4i5r25u8
+flyway:
+  datasources:
+    default:
+      enabled: true
+jpa:
+  default:
+    properties:
+      hibernate:
+        show_sql: true
+application:
+  pagination:
+    pageSize: 10
