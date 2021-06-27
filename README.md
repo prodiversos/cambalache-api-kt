@@ -49,6 +49,22 @@ Opcionalmente, si se utiliza [GraalVM](https://www.graalvm.org/), que es una dis
 además de ejecutarse sobre JVM, puede compilarse a una [Imagen Nativa](https://www.graalvm.org/docs/getting-started/#native-images)
 del sistema operativo donde será ejecutada con la finalidad de mejorar tiempo de arranque y desempeño.
 
+## Preparación
+Ejecutar los siguientes comandos para preparar el entorno de ejecución.
+
+### Linux & Mac
+```shell
+# Copiar plantillas y personalizar valores necesarios
+cp src/main/resources/application-template.yml src/main/resources/application-local.yml
+cp src/main/resources/application-template.yml src/main/resources/application-test.yml
+```
+
+### Windows
+```shell
+# Copiar plantillas y personalizar valores necesarios
+copy src\main\resources\application-template.yml src\main\resources\application-local.yml
+copy src\main\resources\application-template.yml src\main\resources\application-test.yml
+```
 
 ## TDD
 Ejecutar los siguientes comandos para realizar las pruebas de los casos de uso.
@@ -64,21 +80,72 @@ Ejecutar los siguientes comandos para realizar las pruebas de los casos de uso.
 ```
 
 
-## Ejecución Local Sobre JVM
-Ejecutar los siguientes comandos para iniciar la aplicación en ambiente de desarrollo local y sobre JVM.
+## Ejecución Sobre JVM
+Ejecutar los siguientes comandos para iniciar la aplicación sobre JVM.
 
 ### Linux & Mac
 ```shell
-MICRONAUT_ENVIRONMENTS=development ./gradlew run --continuous
+# Compilación automática al editar código
+MICRONAUT_ENVIRONMENTS=local ./gradlew clean run --continuous
+
+# Generar JAR
+./gradlew clean build
+
+# Ejecutar em ambiente local
+MICRONAUT_ENVIRONMENTS=local java -jar build/libs/cambalache-api-kt-0.1-all.jar  
+
+# Ejecutar em ambiente de producción
+MICRONAUT_ENVIRONMENTS=production java -jar build/libs/cambalache-api-kt-0.1-all.jar
 ```
 
 ### Windows
 ```shell
-MICRONAUT_ENVIRONMENTS=development .\gradlew.bat run --continuous
+# Compilación automática al editar código
+set "MICRONAUT_ENVIRONMENTS=local" & .\gradlew.bat clean run --continuous
+
+# Generar JAR
+.\gradlew.bat clean build
+
+# Ejecutar em ambiente local
+set "MICRONAUT_ENVIRONMENTS=local" & java -jar build\libs\cambalache-api-kt-0.1-all.jar
+
+# Ejecutar em ambiente de producción
+set "MICRONAUT_ENVIRONMENTS=production" & java -jar build\libs\cambalache-api-kt-0.1-all.jar
 ```
 
-## Ejecución Local como Imagen Nativa
-Si se utiliza GraalVM es posible crear una imagen nativa de la aplicación y ejecutar con un mejor tiempo de inicio y desempeño.
-```shell
 
+## Ejecución como Imagen Nativa
+Si se utiliza GraalVM es posible crear una imagen nativa de la aplicación y ejecutar con un mejor tiempo de inicio y desempeño.
+GraalVM incluye la herramienta GraalVM Updater (gu) para instalar utilerias opcionales, tales como **native-image**.
+
+**Nota: La compilación a imagen nativa es una tarea que consume tiempo y recursos de cómputo.**
+
+### Linux & Mac
+```shell
+# Instalar native-image
+gu install native-image
+
+# Crear imagen nativa de la aplicación
+./gradlew clean nativeImage
+
+# Ejecutar imagen nativa en ambiente de desarrollo
+MICRONAUT_ENVIRONMENTS=local ./build/native-image/cambalache-api
+
+# Ejecutar imagen nativa en ambiente de producción
+MICRONAUT_ENVIRONMENTS=production ./build/native-image/cambalache-api
+```
+
+### Windows
+```shell
+# Instalar native-image
+gu install native-image
+
+# Crear imagen nativa de la aplicación
+.\gradlew clean nativeImage
+
+# Ejecutar imagen nativa en ambiente de desarrollo
+set "MICRONAUT_ENVIRONMENTS=local" & .\build\native-image\cambalache-api
+
+# Ejecutar imagen nativa en ambiente de producción
+set "MICRONAUT_ENVIRONMENTS=production" & .\build\native-image\cambalache-api
 ```
