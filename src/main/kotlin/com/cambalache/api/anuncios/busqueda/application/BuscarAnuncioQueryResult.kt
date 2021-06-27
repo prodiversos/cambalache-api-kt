@@ -1,7 +1,9 @@
 package com.cambalache.api.anuncios.busqueda.application
 
+import io.micronaut.core.annotation.Introspected
 import java.util.*
 
+@Introspected
 data class BuscarAnuncioQueryResult(
     val idAnuncio: Int,
     val titulo: String,
