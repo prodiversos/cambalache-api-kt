@@ -3,8 +3,10 @@ package com.cambalache.api.anuncios.busqueda.application
 import com.cambalache.api.anuncios.busqueda.domain.AnuncioRepository
 import io.micronaut.data.model.Pageable
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class BuscarAnuncioQueryHandler @Inject constructor(private val anuncioRepository: AnuncioRepository) {
+@Singleton
+class BuscarAnuncioQueryHandler(private val anuncioRepository: AnuncioRepository) {
     fun handle(buscarAnuncioQuery: BuscarAnuncioQuery): List<BuscarAnuncioQueryResult> {
         val (titulo, idTipoArticulo, precioMinimo, precioMaximo, pageable) = buscarAnuncioQuery
         return anuncioRepository

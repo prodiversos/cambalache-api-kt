@@ -30,9 +30,9 @@ class BuscarAnuncioSpec extends Specification {
 
         and: 'Se cuenta con un repositorio de datos de anuncios publicados'
         def repository = embeddedServer.applicationContext.getBean(AnuncioRepository)
-        def queryHandler = new BuscarAnuncioQueryHandler(repository)
 
         when: 'Se buscan anuncios'
+        def queryHandler = new BuscarAnuncioQueryHandler(repository)
         def results = queryHandler.handle(query)
 
         then: 'Se encuentran anuncios de acuerdo al filtro'
