@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 data class TipoArticulo(
-    @Id @Column(name = "id_tipo_articulo") val idTipoArticulo: String,
-    @Column(name = "descripcion") val descripcion: String,
-    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true) val anuncioList: List<Anuncio>
+    @Id @Column(name = "id_tipo_articulo") var idTipoArticulo: String,
+    @Column(name = "descripcion") var descripcion: String,
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true) var anuncioList: List<Anuncio>
 )

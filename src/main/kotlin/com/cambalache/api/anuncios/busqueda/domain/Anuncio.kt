@@ -5,18 +5,18 @@ import javax.persistence.*
 
 @Entity
 data class Anuncio(
-    @Id @GeneratedValue @Column val idAnuncio: Int,
-    @Column val titulo: String,
+    @Id @GeneratedValue @Column var idAnuncio: Int,
+    @Column var titulo: String,
 
     @JoinColumn(name = "id_tipo_articulo")
     @ManyToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    val tipoArticulo: TipoArticulo,
+    var tipoArticulo: TipoArticulo,
 
-    @Column val precio: Double,
-    @Column val imagen: String,
-    @Column val fechaPublicacion: Date,
+    @Column var precio: Double,
+    @Column var imagen: String,
+    @Column var fechaPublicacion: Date,
 
-    @Column val nombreAnunciante: String,
-    @Column val correoAnunciante: String,
-    @Column val telefonoAnunciante: String
+    @Column var nombreAnunciante: String,
+    @Column var correoAnunciante: String,
+    @Column var telefonoAnunciante: String
 )
