@@ -39,3 +39,46 @@ API REST para búsqueda de anuncios y mensajes de contacto de la aplicación Cam
 * Criterios de Aceptación
   - Los adminstradores de Recursos Humanos deben recibir correos de contacto que
     incluyan los datos completos: nombre, correo y comentario.
+
+
+## Requisitos
+La aplicación está escrita en [Kotlin](https://kotlinlang.org/) y compilada
+para Java Virtual Machine (JVM) compatible con [JDK 11](https://jdk.java.net/).
+
+Opcionalmente, si se utiliza [GraalVM](https://www.graalvm.org/), que es una distribución del JDK,
+además de ejecutarse sobre JVM, puede compilarse a una [Imagen Nativa](https://www.graalvm.org/docs/getting-started/#native-images)
+del sistema operativo donde será ejecutada con la finalidad de mejorar tiempo de arranque y desempeño.
+
+
+## TDD
+Ejecutar los siguientes comandos para realizar las pruebas de los casos de uso.
+
+### Linux & Mac
+```shell
+./gradlew test -i
+```
+
+### Windows
+```shell
+.\gradlew.bat test -i
+```
+
+
+## Ejecución Local Sobre JVM
+Ejecutar los siguientes comandos para iniciar la aplicación en ambiente de desarrollo local y sobre JVM.
+
+### Linux & Mac
+```shell
+MICRONAUT_ENVIRONMENTS=development ./gradlew run --continuous
+```
+
+### Windows
+```shell
+MICRONAUT_ENVIRONMENTS=development .\gradlew.bat run --continuous
+```
+
+## Ejecución Local como Imagen Nativa
+Si se utiliza GraalVM es posible crear una imagen nativa de la aplicación y ejecutar con un mejor tiempo de inicio y desempeño.
+```shell
+
+```
