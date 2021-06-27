@@ -67,3 +67,8 @@ tasks {
 
 
 }
+
+nativeImage {
+    args('--verbose')
+    imageName('cambalache-api')
+}
