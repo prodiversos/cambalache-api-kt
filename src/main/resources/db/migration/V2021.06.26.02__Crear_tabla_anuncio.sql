@@ -1,12 +1,12 @@
 create table anuncio (
     id_anuncio serial not null primary key,
     id_tipo_articulo varchar(50) not null,
-    titulo varchar(200) not null,
+    titulo varchar(100) not null,
     precio double precision not null,
     imagen text null,
     fecha_publicacion timestamp with time zone not null,
-    nombre_anunciante varchar(100) not null,
-    correo_anunciante varchar(255) not null,
+    nombre_anunciante varchar(50) not null,
+    correo_anunciante varchar(50) not null,
     telefono_anunciante varchar(30) null,
 
     constraint fk$anuncio$tipo_articulo
