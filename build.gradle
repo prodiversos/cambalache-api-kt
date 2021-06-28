@@ -45,11 +45,14 @@ dependencies {
 
     implementation("com.google.guava:guava:30.1.1-jre")
 
+    // OpenAPI/Swagger
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi:2.5.0")
+    implementation("io.swagger.core.v3:swagger-annotations:2.1.9")
 }
 
 
 application {
-    mainClass.set("com.cambalache.api.ApplicationKt")
+    mainClass.set("com.cambalache.api.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")

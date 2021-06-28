@@ -1,6 +1,11 @@
 micronaut:
   application:
     name: "Cambalache API"
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
 datasources:
   default:
     driverClassName: org.postgresql.Driver

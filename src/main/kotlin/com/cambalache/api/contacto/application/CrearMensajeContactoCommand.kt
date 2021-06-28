@@ -3,6 +3,7 @@ package com.cambalache.api.contacto.application
 import com.cambalache.api.contacto.domain.MensajeContacto
 import com.cambalache.api.contacto.domain.MensajeContactoInvalidoException
 import io.micronaut.core.annotation.Introspected
+import io.swagger.v3.oas.annotations.media.Schema
 import java.util.*
 
 /**
@@ -10,10 +11,11 @@ import java.util.*
  * dirigido a los administradores de Recursos Humanos
  */
 @Introspected
+@Schema(name = "Creación de un Mensaje de Contacto", description = "Datos requeridos para registrar un nuevo mensaje de contacto.")
 class CrearMensajeContactoCommand(
-    private val nombre: String?,
-    private val correo: String?,
-    private val comentario: String?
+    @Schema(description = "Nombre del empleado") val nombre: String?,
+    @Schema(description = "Correo de contacto del empleado") val correo: String?,
+    @Schema(description = "Comentario dirigido a Recursos Humanos") val comentario: String?
 ) {
     private val emailRegex = Regex("""(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])""")
     private val nombreMaxLength = 50
