@@ -1,3 +1,11 @@
+micronaut:
+  server:
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowedOrigins:
+            - "http://localhost:3000"
 datasources:
   default:
     url: "jdbc:postgresql://saea98.com:5433/ca_17"
