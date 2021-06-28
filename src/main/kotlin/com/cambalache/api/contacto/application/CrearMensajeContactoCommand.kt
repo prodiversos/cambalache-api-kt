@@ -21,16 +21,16 @@ class CrearMensajeContactoCommand(
 
     /**
      * Valida los campos del mensaje de contacto
-     * -     nombre: Requerido
+     * -     nombre: Requerido con no más de 50 caracteres
      * -     correo: Requerido y con formato de dirección de correo válida
-     * - comentario: Requerido
+     * - comentario: Requerido con no más de 100 caracteres
      */
     private fun validate() {
         val errores = mutableListOf<String>()
 
         if (nombre == null) {
             errores.add("El nombre es requerido.")
-        } else if (nombre.length > nombreMaxLength) {
+        } else if (nombre.trim().length > nombreMaxLength) {
             errores.add("El nombre excede los $nombreMaxLength caracteres permitidos.")
         }
 
@@ -42,7 +42,7 @@ class CrearMensajeContactoCommand(
 
         if (comentario == null) {
             errores.add("El comentario es requerido.")
-        } else if (comentario.length > comentarioMaxLength) {
+        } else if (comentario.trim().length > comentarioMaxLength) {
             errores.add("El comentario excede los $comentarioMaxLength caracteres permitidos.")
         }
 
@@ -59,9 +59,9 @@ class CrearMensajeContactoCommand(
         validate()
 
         return MensajeContacto(
-            nombre = nombre!!,
-            correo = correo!!,
-            comentario = comentario!!,
+            nombre = nombre!!.trim(),
+            correo = correo!!.trim(),
+            comentario = comentario!!.trim(),
             fechaRegistro = fechaRegistro
         )
     }

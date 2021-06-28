@@ -12,7 +12,9 @@ import javax.validation.Valid
 
 @Validated
 @Controller("mensaje-contacto")
-class MensajeContactoController(private val crearMensajeContactoCommandHandler: CrearMensajeContactoCommandHandler) {
+class MensajeContactoController(
+    private val crearMensajeContactoCommandHandler: CrearMensajeContactoCommandHandler
+) {
     @Post
     fun create(@Valid crearMensajeContactoCommand: CrearMensajeContactoCommand): HttpResponse<Any> {
         try {
