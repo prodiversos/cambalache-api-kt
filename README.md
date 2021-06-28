@@ -114,7 +114,7 @@ set "MICRONAUT_ENVIRONMENTS=production" & java -jar build\libs\cambalache-api-kt
 ```
 
 
-## Ejecución como Imagen Nativa
+## Ejecución como Imagen Nativa (Opcional)
 Si se utiliza GraalVM es posible crear una imagen nativa de la aplicación y ejecutar con un mejor tiempo de inicio y desempeño.
 GraalVM incluye la herramienta GraalVM Updater (gu) para instalar utilerias opcionales, tales como **native-image**.
 
