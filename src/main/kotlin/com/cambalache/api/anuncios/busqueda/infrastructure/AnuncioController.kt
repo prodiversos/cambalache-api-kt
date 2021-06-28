@@ -59,7 +59,7 @@ class AnuncioController @Inject constructor(
 
             return HttpResponse.ok(ApplicationResponse.Ok(result))
         } catch (exception: ApplicationException) {
-            return HttpResponse.serverError(exception)
+            return HttpResponse.serverError(ApplicationResponse.Error(exception.toApplicationError()))
         }
     }
 }
