@@ -1,6 +1,5 @@
 package com.cambalache.api.anuncios.busqueda.infrastructure
 
-import com.cambalache.api.ApplicationException
 import com.cambalache.api.ApplicationResponse
 import com.cambalache.api.anuncios.busqueda.application.BuscarAnuncioQuery
 import com.cambalache.api.anuncios.busqueda.application.BuscarAnuncioQueryHandler
@@ -37,29 +36,25 @@ class AnuncioController @Inject constructor(
         @QueryValue sortProperty: String?,
         @QueryValue sortDirection: String?
     ): HttpResponse<Any> {
-        try {
-            // TODO: Corregir error de ruta no válida en el
-            //  nombre de la propiedad al utilizar Sort.of(...)
-            //val fechaPublicacionProperty = "fechaPublicacion"
-            //val finalSortProperty = sortProperty ?: fechaPublicacionProperty
-            //val finalSortDirection = Sort.Order.Direction.valueOf(sortDirection ?: (if (finalSortProperty == fechaPublicacionProperty) "DESC" else "ASC"))
+        // TODO: Corregir error de ruta no válida en el
+        //  nombre de la propiedad al utilizar Sort.of(...)
+        //val fechaPublicacionProperty = "fechaPublicacion"
+        //val finalSortProperty = sortProperty ?: fechaPublicacionProperty
+        //val finalSortDirection = Sort.Order.Direction.valueOf(sortDirection ?: (if (finalSortProperty == fechaPublicacionProperty) "DESC" else "ASC"))
 
-            val query = BuscarAnuncioQuery(
-                titulo,
-                idTipoArticulo,
-                precioMinimo,
-                precioMaximo,
-                Pageable.from(
-                    pageOffset ?: 0,
-                    pageSize ?: defaultPageSize //,
-                    //Sort.of(Sort.Order(finalSortProperty, finalSortDirection, true))
-                )
+        val query = BuscarAnuncioQuery(
+            titulo,
+            idTipoArticulo,
+            precioMinimo,
+            precioMaximo,
+            Pageable.from(
+                pageOffset ?: 0,
+                pageSize ?: defaultPageSize //,
+                //Sort.of(Sort.Order(finalSortProperty, finalSortDirection, true))
             )
-            val result = buscarAnuncioQueryHandler.handle(query)
+        )
+        val result = buscarAnuncioQueryHandler.handle(query)
 
-            return HttpResponse.ok(ApplicationResponse.Ok(result))
-        } catch (exception: ApplicationException) {
-            return HttpResponse.serverError(ApplicationResponse.Error(exception.toApplicationError()))
-        }
+        return HttpResponse.ok(ApplicationResponse.Ok(result))
     }
 }
