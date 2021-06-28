@@ -1,11 +1,11 @@
 package com.cambalache.api.anuncios.busqueda.infrastructure
 
+import com.cambalache.api.ApplicationException
 import com.cambalache.api.anuncios.busqueda.application.BuscarAnuncioQuery
 import com.cambalache.api.anuncios.busqueda.application.BuscarAnuncioQueryHandler
-import com.cambalache.api.anuncios.busqueda.application.BuscarAnuncioQueryResult
 import io.micronaut.context.annotation.Value
 import io.micronaut.data.model.Pageable
-import io.micronaut.data.model.Sort
+import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.QueryValue
@@ -28,23 +28,30 @@ class AnuncioController @Inject constructor(
         @QueryValue pageSize: Int?,
         @QueryValue sortProperty: String?,
         @QueryValue sortDirection: String?
-    ): List<BuscarAnuncioQueryResult> {
-        // TODO: Corregir error de ruta no válida en el
-        //  nombre de la propiedad al utilizar Sort.of(...)
-        //val fechaPublicacionProperty = "fechaPublicacion"
-        //val finalSortProperty = sortProperty ?: fechaPublicacionProperty
-        //val finalSortDirection = Sort.Order.Direction.valueOf(sortDirection ?: (if (finalSortProperty == fechaPublicacionProperty) "DESC" else "ASC"))
-        val query = BuscarAnuncioQuery(
-            titulo,
-            idTipoArticulo,
-            precioMinimo,
-            precioMaximo,
-            Pageable.from(
-                pageOffset ?: 0,
-                pageSize ?: defaultPageSize //,
-                //Sort.of(Sort.Order(finalSortProperty, finalSortDirection, true))
+    ): HttpResponse<Any> {
+        try {
+            // TODO: Corregir error de ruta no válida en el
+            //  nombre de la propiedad al utilizar Sort.of(...)
+            //val fechaPublicacionProperty = "fechaPublicacion"
+            //val finalSortProperty = sortProperty ?: fechaPublicacionProperty
+            //val finalSortDirection = Sort.Order.Direction.valueOf(sortDirection ?: (if (finalSortProperty == fechaPublicacionProperty) "DESC" else "ASC"))
+
+            val query = BuscarAnuncioQuery(
+                titulo,
+                idTipoArticulo,
+                precioMinimo,
+                precioMaximo,
+                Pageable.from(
+                    pageOffset ?: 0,
+                    pageSize ?: defaultPageSize //,
+                    //Sort.of(Sort.Order(finalSortProperty, finalSortDirection, true))
+                )
             )
-        )
-        return buscarAnuncioQueryHandler.handle(query)
+            val result = buscarAnuncioQueryHandler.handle(query)
+
+            return HttpResponse.ok(result)
+        } catch (exception: ApplicationException) {
+            return HttpResponse.serverError(exception)
+        }
     }
 }
