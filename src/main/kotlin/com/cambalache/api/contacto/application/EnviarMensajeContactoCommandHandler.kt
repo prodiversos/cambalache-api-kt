@@ -24,7 +24,7 @@ open class EnviarMensajeContactoCommandHandler(
             try {
                 // TODO: Enviar correo a destino y actualizar el mensaje
 
-                // mensaje.situacion = SituacionMensajeContacto.ENVIADO
+                mensaje.situacion = SituacionMensajeContacto.ENVIADO
             } catch (exception: Exception) {
                 mensaje.situacion = SituacionMensajeContacto.FALLIDO
                 mensaje.comentarioProcesamiento = exception.message
