@@ -1,6 +1,7 @@
 package com.cambalache.api.anuncios.busqueda.infrastructure
 
 import com.cambalache.api.ApplicationException
+import com.cambalache.api.ApplicationResponse
 import com.cambalache.api.anuncios.busqueda.application.BuscarAnuncioQuery
 import com.cambalache.api.anuncios.busqueda.application.BuscarAnuncioQueryHandler
 import io.micronaut.context.annotation.Value
@@ -49,7 +50,7 @@ class AnuncioController @Inject constructor(
             )
             val result = buscarAnuncioQueryHandler.handle(query)
 
-            return HttpResponse.ok(result)
+            return HttpResponse.ok(ApplicationResponse.Ok(result))
         } catch (exception: ApplicationException) {
             return HttpResponse.serverError(exception)
         }
