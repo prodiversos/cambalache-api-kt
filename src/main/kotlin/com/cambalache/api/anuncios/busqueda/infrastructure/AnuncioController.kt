@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @Validated
 @Controller(value = "anuncio")
-open class AnuncioController @Inject constructor(
+class AnuncioController @Inject constructor(
     private val buscarAnuncioQueryHandler: BuscarAnuncioQueryHandler,
     @Value("\${application.pagination.pageSize}") private val defaultPageSize: Int
 ) {
@@ -27,7 +27,7 @@ open class AnuncioController @Inject constructor(
     @ApiResponses(
         ApiResponse(responseCode = "200", description = "Consulta ejecutada con éxito devolviendo cero o más resultados.")
     )
-    open fun getLike(
+    fun getLike(
         @QueryValue titulo: String?,
         @QueryValue idTipoArticulo: String?,
         @QueryValue precioMinimo: Double?,
