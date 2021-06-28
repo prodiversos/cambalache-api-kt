@@ -23,3 +23,7 @@ jpa:
 application:
   pagination:
     pageSize: 10
+  rh:
+    mail:
+      delay: "30m"
+      recipient: "angello_dm@hotmail.com"

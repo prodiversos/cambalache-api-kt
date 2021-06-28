@@ -15,5 +15,9 @@ interface MensajeContactoRepository : CrudRepository<MensajeContacto, Int> {
     )
     fun create(nombre: String, correo: String, comentario: String, situacion: String, fechaRegistro: Date): Int
 
+    @Query(
+        value = "select mc from MensajeContacto as mc where mc.situacion = :situacion"
+    )
+    fun findBySituacion(situacion: String): List<MensajeContacto>
 }
 

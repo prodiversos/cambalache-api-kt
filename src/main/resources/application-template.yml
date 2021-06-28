@@ -24,3 +24,7 @@ jpa:
 application:
   pagination:
     pageSize: 10
+  rh:
+    mail:
+      delay: "30m"
+      recipient: "someone@example.com"

@@ -48,6 +48,9 @@ dependencies {
     // OpenAPI/Swagger
     annotationProcessor("io.micronaut.openapi:micronaut-openapi:2.5.0")
     implementation("io.swagger.core.v3:swagger-annotations:2.1.9")
+
+    // Apache Commons Email
+    implementation("org.apache.commons:commons-email:1.5")
 }
 
 
