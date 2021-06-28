@@ -13,7 +13,7 @@ data class Anuncio(
     var tipoArticulo: TipoArticulo,
 
     @Column var precio: Double,
-    @Column var imagen: String,
+    @Column var imagen: String?,
     @Column var fechaPublicacion: Date,
 
     @Column var nombreAnunciante: String,

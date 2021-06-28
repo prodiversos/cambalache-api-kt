@@ -7,8 +7,8 @@ import java.util.*
 data class BuscarAnuncioQueryResult(
     val idAnuncio: Int,
     val titulo: String,
-    val idTipoAnuncio: String,
-    val descripcionTipoAnuncio: String,
+    val idTipoArticulo: String,
+    val descripcionTipoArticulo: String,
     val precio: Double,
     val imagen: String?,
     val fechaPublicacion: Date,
